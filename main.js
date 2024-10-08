@@ -1,38 +1,32 @@
 
-
-
-
-
-function calculadora() {
-    let pergunta = prompt("Quantos graus esta fazendo na sua cidade?")
-    console.log(pergunta);
-    
-    while (pergunta >= 0 && pergunta <= 36){
-alert ( "De acordo com o protocolo de temperatura do Rio de Janeiro, sua cidade esta no NC1 de calor")
-    break;
+class SimuladorTemperatura {
+    constructor(cidade, temperatura) {
+        this.cidade = cidade;
+        this.temperatura = temperatura;
     }
-    while( pergunta >= 36 && pergunta <= 40){
 
-        alert ( "De acordo com o protocolo de temperatura do Rio de Janeiro, sua cidade esta no NC2/NC3 de calor")
-        break;
+    verificarCategoria() {
+        if (this.temperatura >= 0 && this.temperatura <= 36) {
+            return `Na cidade de ${this.cidade}, está no NC1 de calor.`;
+        } else if (this.temperatura > 36 && this.temperatura <= 40) {
+            return `Na cidade de ${this.cidade}, está no NC2/NC3 de calor.`;
+        } else if (this.temperatura > 40 && this.temperatura <= 44) {
+            return `Na cidade de ${this.cidade}, está no NC4 de calor.`;
+        } else if (this.temperatura >= 45) {
+            return `Na cidade de ${this.cidade}, está no NC5 de calor.`;
+        } else {
+            return "Temperatura inválida!";
         }
-
-
-            while( pergunta >= 40 && pergunta <= 44){
-
-                alert ( "De acordo com o protocolo de temperatura do Rio de Janeiro, sua cidade esta no NC4 de calor")
-                break;
-                }
-
-                while( pergunta >= 45){
-
-                    alert ( "De acordo com o protocolo de temperatura do Rio de Janeiro, sua cidade esta no NC5 de calor")
-                    break;
-                    }
-    
     }
-    
+}
 
+function iniciarSimulador() {
+    let cidade = prompt("Em que cidade você está?");
+    let temperatura = Number(prompt("Quantos graus está fazendo na sua cidade?"));
 
+    let simulacao = new SimuladorTemperatura(cidade, temperatura);
 
-calculadora();
+    alert(simulacao.verificarCategoria());
+}
+
+iniciarSimulador();
